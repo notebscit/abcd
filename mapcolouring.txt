@@ -1,0 +1,59 @@
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+int a,number,G[20][20],c[20];
+void mcolouring(int p);
+int nextval(int p);
+
+void mcolouring(int p){
+int u;
+while(1){
+nextval(p);
+if(c[p]==0)
+break;
+if(p==number){
+for(u=1;u<=number;u++)
+cout<<" "<<c[u];
+cout<<"\n";
+}
+else
+mcolouring(p+1) ;
+
+}
+}
+int nextval(int p){
+int l;
+while(1){
+c[p]=(c[p]+1)%(a+1);
+if(c[p]==0)
+return 0;
+
+for(l=1;l<=number;l++)
+if(G[p][l]&&c[p]==c[l])
+break;
+if(l==number+1)
+return 0;
+}
+}
+
+int main(){
+int u,edges,x,y;
+clrscr();
+cout<<"Enter the number of vertices in the given Graph G: \n";
+cin>>number;
+cout<<"Enter the nummber of edges in the given Graph G: \n";
+cin>>edges;
+for(u=1;u<=edges;u++){
+cout<<"Enter the edges in the graph: \n";
+cin>>x>>y;
+G[x][y]=1;
+G[y][x]=1;
+}
+for(u=1;u<=number;u++)
+c[u]=0;
+cout<<"Enter the nummber of colour available: \n";
+cin>>a;
+cout<<"Following are the different ways by which nodes can be colored: \n";
+mcolouring(1);
+getch();
+}

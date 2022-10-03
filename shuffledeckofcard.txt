@@ -1,0 +1,37 @@
+#include <iostream>
+#include <conio>
+#include <stdlib>
+#include <time>
+#include <string>
+#include <vector>
+
+
+using namespace std;
+void main(){
+clrscr();
+int SuitsNum=4;
+int FaceNum=13;
+int CardNum=0;
+string card=" ";
+string suits[]={"Hearts","club","Diamond","Spade"};
+string faces[]={"2","3","4","5","6","7","8","9","jack","queen","King","Ace"};
+vector<string>Cards;
+for(int i=0;i<SuitsNum;i++){
+for(int j=0;j<FaceNum;j++){
+card=faces[j]+" of "+suits[i];
+Cards.push_back(card);
+CardNum++;
+}
+}
+
+while(CardNum>0){
+int RCard=rand()%CardNum;
+string Drawcard=Cards.at(RCard);
+Cards.erase(Cards.begin()+RCard);
+CardNum--;
+cout<<Drawcard<<endl;
+}
+getch();
+
+
+}
