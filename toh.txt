@@ -1,0 +1,30 @@
+#include<iostream.h>
+#include<conio.h>
+
+void tower(int a,char from,char aux,char to){
+if(a==1)
+{
+cout<<"\tMove disc from "<<from<<" to "<<to<<"\n";
+return;
+}
+
+else
+{
+tower(a-1,from,to,aux);
+cout<<"\tMove disc "<<a<<" from "<<from<<" to "<<to<<"\n";
+tower(a-1,aux,from,to);
+}
+
+}
+
+
+void main(){
+clrscr();
+int a;
+cout<<"Enter no of disc\n";
+cin>>a;
+tower(a,'A','B','C');
+getch();
+
+
+}

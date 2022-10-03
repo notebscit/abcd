@@ -1,0 +1,64 @@
+#include<iostream.h>
+#include<conio.h>
+
+int xcapacity,ycapacity;
+void display(int a,int b){
+cout<<"\t"<<a<<"\t"<<b<<endl;
+}
+
+
+int min(int d,int f){
+if(d<f)
+return d;
+else
+return f;
+}
+
+
+int steps(int n){
+int x=0,y=0,step=0;
+int temp;
+cout<<"\n-----------------------------------------------------\n";
+cout<<"\t	Jar A	  Jar B"<<endl;
+cout<<"\n-----------------------------------------------------\n";
+while(x!=n){
+if(x==0){
+x=xcapacity;
+step+=1;
+cout<<"\nFill A ";display(x,y);
+
+}
+else if(y==ycapacity){
+y=0;
+step++;
+cout<<"\nEmpty B ";display(x,y);
+}
+else                                                                     \
+{
+
+temp=min(ycapacity-y,x);
+y=y+temp;
+x=x-temp;
+step++;
+cout<<"\nPour A in B ";display(x,y);
+}
+}
+return step;
+}
+
+void main(){
+int n ,ans;
+clrscr();
+cout<<"\nEnter the liters(GOAL) of water required to be filled in jar A: ";
+cin>>n;
+cout<<"\nEnter Capacity of the jar A ";
+cin>>xcapacity;
+cout<<"\nEnter Capacity of the jar B ";
+cin>>ycapacity;
+ans=steps(n);
+cout<<"\n-----------------------------------------------------\n";
+cout<<"\n Steps Required: "<<ans;
+cout<<"\n-----------------------------------------------------\n";
+getch();
+
+}

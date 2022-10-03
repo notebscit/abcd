@@ -1,0 +1,58 @@
+#include<iostream.h>
+#include<conio.h>
+
+int calcost(int a[10], int n)
+{
+int c=0;
+for(int i=0;i<n;i++)
+{
+for(int j=i+1;j<n;j++)
+if(a[j]<a[i])
+c++;
+}
+return c;
+}
+
+void swap(int a[10],int i,int j)
+{
+int t=a[i];
+a[i]=a[j];
+a[j]=t;
+}
+
+
+void main(){
+int n,a[10],bc,i,nc;
+clrscr();
+bc=15;
+cout<<"Enter total np. of element: ";
+cin>>n;
+cout<<"Enter Array of Element :\n";
+for(i=0;i<n;i++)
+{
+cin>>a[i];
+}
+while(bc>0){
+for(i=0;i<n-1;i++){
+swap(a,i,i+1);
+nc=calcost(a,n);
+if(bc>nc){
+cout<<"After Swap: \n";
+for(i=0;i<n;i++){
+cout<<a[i]<<"	";
+cout<<"\n";
+bc=nc;
+
+}
+}
+else
+swap(a,i,i+1);
+}
+}
+cout<<"Final Swap: \n";
+for(i=0;i<n;i++)
+cout<<a[i]<<"	";
+
+
+getch();
+}
