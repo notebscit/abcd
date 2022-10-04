@@ -1,0 +1,118 @@
+#include<iostream.h>
+#include<conio.h>
+
+int im=3,ic=3,i,j,fm=0,fc=0,status=0,flag,select=0;
+
+void display(char bpass1,char bpass2){
+cout<<"\n";
+for(int i=0;i<fm;i++)
+cout<<"m";
+for(i=0;i<fc;i++)
+cout<<"c";
+if(flag==0)
+cout<<" boat at right("<<bpass1<<","<<bpass2<<")";
+else
+cout<<" boat at left ("<<bpass1<<","<<bpass2<<")";
+
+for(i=0;i<im;i++)
+cout<<" m ";
+for(i=0;i<ic;i++)
+cout<<" c ";
+}
+
+
+
+int win(){
+if(fc==3&&fm==3)
+return 0;
+else
+return 1;
+}
+
+void solution(){
+while(win()){
+
+if(flag==0){
+
+switch(select){
+
+case 1:display('c',' ');
+ic++;
+break;
+
+case 2:display('c','m');
+ic++;
+im++;
+break;
+
+}
+
+if(((im-2)>=ic&&(fm+2)>=fc)||(im-2)==0){
+im=im-2;
+select=1;
+display('m','m');
+flag=1;
+}
+else
+if((ic-2)<im&&(fm==0)||(fc+2)<=fm||im==0)
+{
+ic=ic-2;
+select=2;
+display('c','c');
+flag=1;
+}
+else if((ic--)<=(im--)&&(fm++)>=(fm++))
+{
+ic=ic-1;
+im=im-1;
+select=3;
+display('m','c');
+flag=1;
+}
+}
+
+else
+{
+switch(select){
+case 1:display('m','m');
+fm=fm+2;
+break;
+
+case 2:display('c','c');
+fc=fc+2;
+break;
+case 3:display('m','m');
+fc=fc+1;
+fm=fm+1;
+break;
+}
+
+
+if(win()){
+if(((fc>1&&fm==0)||im==0 ))
+{
+fc--;
+select=1;
+display('c',' ');
+flag=0;
+}
+else if((ic+2)>im)
+{
+fc--;
+fm--;
+select=2;
+display('c','m');
+flag=0;
+}
+}
+}
+}
+}
+
+void main(){
+cout<<"Missionaries and Cannibal";
+solution();
+display(' ',' ');
+cout<<"\n";
+getch();
+}
